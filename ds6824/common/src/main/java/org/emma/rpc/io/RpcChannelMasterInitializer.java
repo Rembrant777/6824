@@ -10,12 +10,12 @@ import org.emma.rpc.common.RpcRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RpcChannelInitializer extends ChannelInitializer<NioSocketChannel> {
-    private static final Logger LOG = LoggerFactory.getLogger(RpcChannelInitializer.class);
-    private Object rpcServerInstance;
+public class RpcChannelMasterInitializer extends ChannelInitializer<NioSocketChannel> {
+    private static final Logger LOG = LoggerFactory.getLogger(RpcChannelMasterInitializer.class);
+    private Object rpcServerInstanceRef;
 
-    public RpcChannelInitializer(Object rpcServerInstance) {
-        this.rpcServerInstance = rpcServerInstance;
+    public RpcChannelMasterInitializer(Object rpcServerInstance) {
+        this.rpcServerInstanceRef = rpcServerInstance;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class RpcChannelInitializer extends ChannelInitializer<NioSocketChannel> 
 
         // here we pass the rpc node (the server object instance to the channel handle adapter)
         // todo: this better replaced by the protocol
-        pipeline.addLast(new RpcChannelInboundHandlerAdapter(rpcServerInstance));
+        pipeline.addLast(new RpcChannelInboundHandlerAdapter(rpcServerInstanceRef));
 
         LOG.info("#initChannel end...");
     }

@@ -64,11 +64,30 @@ public class RpcUtils {
             }
         }
 
-
         // if we got here ,we can say that this rpc request is valid
         // 1. all class member variables should not be null or empty
         // 2. parameter types length and type should match to the parameter object instance
         LOG.info("#isValidRpcRequest flag {}", flag);
         return flag;
+    }
+
+    public static Class<?>[] genParameterTypeArr(Object[] args) {
+        Class<?> [] ret = new Class[args.length];
+
+        for (int idx = 0; idx < args.length; idx++) {
+            ret[idx] = args[idx].getClass();
+        }
+
+        int len = Objects.nonNull(ret) ? ret.length : 0;
+        LOG.info("#genParameterTypeArr ret non-null status {}, len {}", Objects.nonNull(ret), len);
+        return ret;
+    }
+
+    public static int randPort() {
+        int ret = -1;
+        int start = 11000, end = 13000;
+        ret = (int) ((Math.random() * (end - start)) + start);
+        LOG.info("#randPort ret {}", ret);
+        return ret;
     }
 }

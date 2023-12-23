@@ -19,8 +19,14 @@ public class RpcChannel extends ChannelInboundHandlerAdapter implements Callable
     private RpcRequest request;
     private int serverPort;
 
+    public RpcChannel(int port) {
+        this.serverPort = port;
+    }
+
+
     /**
-     * Method will be invoked when channel active
+     * Method will be invoked once the channel is established to the server side.
+     * @param ctx the reference of the channel context
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {

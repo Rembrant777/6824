@@ -4,3 +4,5 @@
 
 * [Course Link](https://pdos.csail.mit.edu/6.824/labs/lab-mr.html)
 
+* Most of the codes are referring from [MIT6.824-Java](https://github.com/razertory/MIT6.824-Java)
+

@@ -26,6 +26,7 @@ public class RpcChannel extends ChannelInboundHandlerAdapter implements Callable
 
     /**
      * Method will be invoked once the channel is established to the server side.
+     *
      * @param ctx the reference of the channel context
      */
     @Override
@@ -46,6 +47,7 @@ public class RpcChannel extends ChannelInboundHandlerAdapter implements Callable
 
     @Override
     public synchronized Object call() throws Exception {
+        LOG.info("#call recv request non-null status {}", Objects.nonNull(request));
         context.writeAndFlush(request);
         wait();
         return result;

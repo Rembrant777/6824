@@ -20,7 +20,7 @@ public class StringUtils {
         }
 
         LOG.info("#isEmptyOrNull flag {}", flag);
-        return flag;
+        return false;
     }
 
     public static boolean isNotEmpty(String str) {

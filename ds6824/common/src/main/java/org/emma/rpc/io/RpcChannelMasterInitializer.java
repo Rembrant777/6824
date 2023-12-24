@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 
 public class RpcChannelMasterInitializer extends ChannelInitializer<NioSocketChannel> {
     private static final Logger LOG = LoggerFactory.getLogger(RpcChannelMasterInitializer.class);
-    private Object rpcServerInstanceRef;
+    private RpcNode rpcServerInstanceRef;
 
-    public RpcChannelMasterInitializer(Object rpcServerInstance) {
+    public RpcChannelMasterInitializer(RpcNode rpcServerInstance) {
         this.rpcServerInstanceRef = rpcServerInstance;
     }
 

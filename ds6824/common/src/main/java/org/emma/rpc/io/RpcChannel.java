@@ -40,7 +40,7 @@ public class RpcChannel extends ChannelInboundHandlerAdapter implements Callable
      */
     @Override
     public synchronized void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        // todo: object converted to message object to be added here
+        // todo: object converted to message object to be added here (may be later ...)
         this.result = msg.toString();
         notify();
     }

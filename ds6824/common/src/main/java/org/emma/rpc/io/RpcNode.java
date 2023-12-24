@@ -65,6 +65,9 @@ public class RpcNode {
     public Object invoke(Object obj) throws Exception {
         String ret = "";
 
+        // here we need to check the obj should be the instance of the RpcRequest
+        // so that we can continue to extract the corresponding method name,
+        // method parameters and the parameter types from the request instance
         if (Objects.isNull(obj) || !(obj instanceof RpcRequest)) {
             throw new Exception("#invoke recv obj is null or not an instance of the required RpcRequest");
         }

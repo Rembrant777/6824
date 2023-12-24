@@ -2,16 +2,19 @@ package org.emma.rpc.io;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
+@Data
 public class RpcChannelInboundHandlerAdapter extends ChannelInboundHandlerAdapter {
     private static final Logger LOG = LoggerFactory.getLogger(RpcChannelInboundHandlerAdapter.class);
 
     // this is the reference of the rpc server instance
     private RpcNode rpcServerInstanceRef;
+    private Object handleResult;
     public RpcChannelInboundHandlerAdapter(RpcNode rpcServerInstance) {
         this.rpcServerInstanceRef = rpcServerInstance;
     }
@@ -26,6 +29,9 @@ public class RpcChannelInboundHandlerAdapter extends ChannelInboundHandlerAdapte
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object obj) throws Exception {
         LOG.info("#channelRead recv obj non-null status {}", Objects.nonNull(obj));
-        ctx.writeAndFlush(rpcServerInstanceRef.invoke(obj));
+        Object ret = rpcServerInstanceRef.invoke(obj);
+        this.handleResult = ret;
+        LOG.info("#channelRed got ret non-null status {}", Objects.nonNull(ret));
+        ctx.writeAndFlush(ret);
     }
 }

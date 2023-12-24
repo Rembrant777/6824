@@ -3,11 +3,9 @@ package org.emma.rpc.common;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,10 +15,10 @@ import java.util.UUID;
 public class JSONRpcSerializerTest {
     private static final Logger LOG = LoggerFactory.getLogger(JSONRpcSerializerTest.class);
 
-    private static JSONRpcSerializer serializer;
+    private JSONRpcSerializer serializer;
 
-    @BeforeAll
-    public static void init() {
+    @Before
+    public void init() {
         serializer = new JSONRpcSerializer();
         Assert.assertTrue(Objects.nonNull(serializer));
     }

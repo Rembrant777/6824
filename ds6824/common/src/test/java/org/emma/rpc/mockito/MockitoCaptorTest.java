@@ -5,18 +5,21 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
-import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+
+/**
+ * In this class show how to use the captor in Mockito
+ */
 public class MockitoCaptorTest {
     private static final Logger LOG = LoggerFactory.getLogger(MockitoCaptorTest.class);
+
     /**
      * MyDependency is a simple mock class used as a dependency
      */
@@ -48,7 +51,6 @@ public class MockitoCaptorTest {
     /**
      * And the SelfContainedTestClass is referring to the class that
      * contains the setup, test method, and the main method for running the test.
-     *
      */
     static class SelfContainedTestClass {
         private MyDependencyClass depClazz;

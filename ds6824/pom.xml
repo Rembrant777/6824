@@ -17,7 +17,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netty.version>4.1.56.Final</netty.version>
+        <netty.version>4.1.104.Final</netty.version>
         <fastjson.version>1.2.69</fastjson.version>
         <lombok.version>1.18.12</lombok.version>
         <guava.version>29.0-jre</guava.version>

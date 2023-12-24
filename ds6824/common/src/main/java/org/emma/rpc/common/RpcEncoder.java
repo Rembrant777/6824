@@ -6,6 +6,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.ByteOrder;
 import java.util.Objects;
 
 public class RpcEncoder extends MessageToByteEncoder {
@@ -24,6 +25,7 @@ public class RpcEncoder extends MessageToByteEncoder {
     protected void encode(ChannelHandlerContext ctx, Object obj, ByteBuf byteBuf) throws Exception {
         LOG.info("#encode recv obj non-null status {}, byte buf non-null status {}",
                 Objects.nonNull(obj), Objects.nonNull(byteBuf));
+        byteBuf.order(ByteOrder.BIG_ENDIAN);
 
         // here we try to encode the object instance into the byte buffer array via rpc serializer
         if (Objects.nonNull(clazz) && clazz.isInstance(obj)) {

@@ -10,22 +10,22 @@ public class StringUtils {
     public static boolean isEmptyOrNull(String str) {
         boolean flag = true;
         if (Objects.isNull(str)) {
-            LOG.info("#isEmptyOrNull flag {}", flag);
+            LOG.debug("#isEmptyOrNull flag {}", flag);
             return flag;
         }
 
         if (str.length() == 0 || str.trim().length() == 0) {
-            LOG.info("#isEmptyOrNull flag {}", flag);
+            LOG.debug("#isEmptyOrNull flag {}", flag);
             return flag;
         }
 
-        LOG.info("#isEmptyOrNull flag {}", flag);
+        LOG.debug("#isEmptyOrNull flag {}", flag);
         return false;
     }
 
     public static boolean isNotEmpty(String str) {
         boolean flag =  !isEmptyOrNull(str);
-        LOG.info("#isNotEmpty flag {}", flag);
+        LOG.debug("#isNotEmpty flag {}", flag);
         return flag;
     }
 }

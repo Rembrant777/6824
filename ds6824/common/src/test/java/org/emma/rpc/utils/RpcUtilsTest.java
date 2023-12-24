@@ -40,7 +40,6 @@ public class RpcUtilsTest {
                 && clazzArr.length == objArr.length);
     }
 
-
     private Object[] genArgArr() {
         return new Object[]{new Integer(789), new String("Test"),
                 new Double(233.2)};
@@ -50,6 +49,4 @@ public class RpcUtilsTest {
         RpcRequest request = new RpcRequest();
         return request;
     }
-
-
 }

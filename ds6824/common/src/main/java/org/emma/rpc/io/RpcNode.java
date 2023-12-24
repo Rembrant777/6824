@@ -87,7 +87,7 @@ public class RpcNode {
         // here we retrieve the class (actually the specified class in the sub-class
         // set of {Master.class, SampleServer.class or the Worker.class})
         // of the server class. Cuz the invoked method depends on the actual class which extends RpcNode.class.
-        Class<?> serverClass = this.getClass();
+        Class<?> serverClass = Class.forName(rpcRequest.getClazzName());
         String methodName = rpcRequest.getMethodName();
         Class<?>[] parameterTypes = rpcRequest.getParameterTypes();
         Method method = serverClass.getDeclaredMethod(methodName, parameterTypes);
@@ -137,6 +137,7 @@ public class RpcNode {
         request.setParameters(args);
         Class<?>[] parameterTypes = RpcUtils.genParameterTypeArr(args);
         request.setParameterTypes(parameterTypes);
+        request.setClazzName(RpcNode.class.getName());
 
         if (!RpcUtils.isValidRpcRequest(request)) {
             LOG.info("#call created request is not valid!");
@@ -189,5 +190,20 @@ public class RpcNode {
         this.bossGroup.shutdownGracefully();
         this.workGroup.shutdownGracefully();
         LOG.info("shutdown gracefully end");
+    }
+
+
+    /**
+     * here we create a method for invoke method to invoke via the reflection.
+     *
+     * @param param1
+     * @param param2
+     * @param param3
+     */
+    private String mockMethod(String param1, String param2, Integer param3) {
+        String ret = UUID.randomUUID().toString();
+        ret = String.format("%s-%s-%d-%s", param1, param2, param3, ret);
+        LOG.info("#mockMethod ret {}", ret);
+        return ret;
     }
 }

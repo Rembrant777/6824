@@ -6,6 +6,8 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,16 +25,16 @@ public class RpcDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf,
                           List<Object> list) throws Exception {
-        if (Objects.isNull(byteBuf) || byteBuf.readInt() <= 0) {
+        if (Objects.isNull(byteBuf)) {
             LOG.info("#decode recv msg is empty close the channel");
             channelHandlerContext.close();
         }
         // retrieve the length of received message length
-        int dataLength = byteBuf.readInt();
-        LOG.info("#decode received msg len {}", dataLength);
+        int byteLen = byteBuf.readInt();
+        LOG.info("#decode received msg len {}", byteLen);
 
         // extract the data from the message
-        byte [] bytes = new byte[dataLength];
+        byte [] bytes = new byte[byteLen];
         byteBuf.readBytes(bytes);
         // converted bytes into the specified object
         Object obj = rpcSerializer.deserialize(clazz, bytes);
